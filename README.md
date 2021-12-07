@@ -1,4 +1,6 @@
 # Mercury
+![image](https://user-images.githubusercontent.com/60958064/145025976-2b235bd5-ca19-47c7-82c7-d1eed2fbba90.png)
+
 Mercury is a simple modmail bot that you can use it in your server so members can contact moderators/staffs in case of emergency.
 
 # Usage
