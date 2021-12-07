@@ -12,3 +12,6 @@ Mercury is a simple modmail bot that you can use it in your server so members ca
 
 # Note
 This bot is intended to use on only one server. It is better to use it on your own server.
+
+# Credits
+The idea, code and logo were originally created by [terabyte3](https://github.com/terabyte3). My purpose was to rewrite it to work as a cog.
