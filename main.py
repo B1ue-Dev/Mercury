@@ -29,4 +29,4 @@ async def on_ready():
 
 
 
-bot.run(data["token"])
+bot.run(data["TOKEN"])
