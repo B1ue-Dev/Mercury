@@ -1,20 +1,30 @@
-import discord
-from discord.ext import commands
+import nextcord
+from nextcord.ext import commands
 import json
 
 
 with open('./data/config.json') as f:
 	data = json.load(f)
 
-bot = commands.Bot(command_prefix="!")
+
+
+intents = nextcord.Intents.default()
+intents.members = True
+activity = nextcord.Activity(type=nextcord.ActivityType.watching, name="for incoming modmail")
+bot = commands.Bot(command_prefix="m!", activity=activity, intents=intents, help_command=None)
+
+
 
 bot.load_extension('modmail')
 
+
+
 @bot.event
 async def on_ready():
-	game = discord.Game("Waiting for incoming modmail")
-	await bot.change_presence(status=discord.Status.online, activity=game)
 	print("Bot is ready!")
 
 
-bot.run(data['TOKEN'])
+
+
+
+bot.run(data["token"])
