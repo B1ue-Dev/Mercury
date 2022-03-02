@@ -39,7 +39,7 @@ class Commands(commands.Cog):
 
 	@commands.command(name="check")
 	@commands.has_permissions(kick_members=True)
-	async def _check(self, ctx, member: nextcord.Member):
+	async def check(self, ctx, member: nextcord.Member):
 		with open("./data/blocked.txt", "r") as f:
 			data = f.read()
 			if str(member.id) in data:
@@ -50,7 +50,7 @@ class Commands(commands.Cog):
 
 	@commands.command(name="list")
 	@commands.has_permissions(kick_members=True)
-	async def _list(self, ctx):
+	async def list(self, ctx):
 		with open("./data/blocked_read.txt", "r") as f:
 			data2 = f.read()
 			data2 = data2.replace(",", "\n")
