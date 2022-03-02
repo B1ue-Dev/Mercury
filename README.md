@@ -10,5 +10,14 @@ Mercury is a simple modmail bot that you can use it in your server so members ca
 - Put the ID of the channel that you want to use as a modmail channel in `./data/config.json`.
 - Run ``python3 main.py``.
 
+# Feature
+- A simple modmail system.
+- Being able to block/unblock members who use the bot.
+- More will be added soon.
+
 # Note
 This bot is intended to use on only one server. It is better to use it on your own server.
+
+# Todo
+- Embed the message.
+- Better overall sent/received message format.
