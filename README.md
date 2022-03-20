@@ -19,5 +19,5 @@ Mercury is a simple modmail bot that you can use it in your server so members ca
 This bot is intended to use on only one server. It is better to use it on your own server.
 
 # Todo
-- Embed the message.
-- Better overall sent/received message format.
+- [ ] Embed the message.
+- [ ] Better overall sent/received message format.
