@@ -34,7 +34,7 @@ class Modmail(commands.Cog):
 						await modmail_channel.send(content=("<@" + str(message.author.id) + ">: " + message.content))
 
 
-				elif str(message.channel.id) == channel_id and message.content.startswith("<"):
+				elif int(message.channel.id) == channel_id and message.content.startswith("<"):
 					member_object = message.mentions[0]
 					if message.attachments != empty_array:
 						files = message.attachments
