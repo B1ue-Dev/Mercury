@@ -7,8 +7,13 @@ class Commands(commands.Cog):
 	def __init__(self, bot):
 		self.bot = bot
 
+
 	@commands.command(name="block")
 	@commands.has_permissions(kick_members=True)
+	"""
+	Command: block
+	Usage: Block a member from using the modmail bot.
+	"""
 	async def block(self, ctx, member: nextcord.Member):
 		ids = str(member.id)
 		with open("./data/blocked.txt", "a+") as f:
@@ -22,6 +27,10 @@ class Commands(commands.Cog):
 
 	@commands.command(name="unblock")
 	@commands.has_permissions(kick_members=True)
+	"""
+	Command: unblock
+	Usage: Unblock a member from using the modmail bot.
+	"""
 	async def unblock(self, ctx, member: nextcord.Member):
 		ids = str(member.id)
 		with open("./data/blocked.txt", "r") as f:
@@ -39,6 +48,10 @@ class Commands(commands.Cog):
 
 	@commands.command(name="check")
 	@commands.has_permissions(kick_members=True)
+	"""
+	Command: check
+	Usage: Check whenever a member is blocked/unblocked.
+	"""
 	async def check(self, ctx, member: nextcord.Member):
 		with open("./data/blocked.txt", "r") as f:
 			data = f.read()
@@ -50,6 +63,10 @@ class Commands(commands.Cog):
 
 	@commands.command(name="list")
 	@commands.has_permissions(kick_members=True)
+	"""
+	Command: list
+	Usage: Shows a list of blocked members.
+	"""
 	async def list(self, ctx):
 		with open("./data/blocked_read.txt", "r") as f:
 			data2 = f.read()
