@@ -1,6 +1,9 @@
 from nextcord.ext import commands
-import json
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
+channel_id = int(os.getenv("CHANNEL_ID"))
 
 class Modmail(commands.Cog):
 	def __init__(self, bot):
@@ -9,9 +12,6 @@ class Modmail(commands.Cog):
 	@commands.Cog.listener()
 	async def on_message(self, message):
 		empty_array = []
-		with open('./data/config.json') as f:
-			data = json.load(f)
-		channel_id = data["CHANNEL_ID"]
 
 		modmail_channel = await self.bot.fetch_channel(channel_id)
 		
