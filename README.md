@@ -21,3 +21,6 @@ This bot is intended to use on only one server. It is better to use it on your o
 # Todo
 - [ ] Embed the message.
 - [ ] Better overall sent/received message format.
+
+# Note
+- In rewriting process

@@ -1,10 +1,10 @@
 import nextcord
 from nextcord.ext import commands
-import json
+import os
+from dotenv import load_extension
 
-
-with open('./data/config.json') as f:
-	data = json.load(f)
+load_dotenv()
+scope = os.getenv("TOKEN")
 
 
 
@@ -29,4 +29,4 @@ async def on_ready():
 
 
 
-bot.run(data["TOKEN"])
+bot.run(scope)
