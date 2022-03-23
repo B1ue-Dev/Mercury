@@ -15,7 +15,6 @@ bot = commands.Bot(command_prefix="m!", activity=activity, intents=intents, help
 
 
 
-bot.load_extension('jishaku')
 bot.load_extension('modmail')
 bot.load_extension('admin')
 
