@@ -11,16 +11,3 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-
-      - name: Setup Railway CLI
-        # You may pin to the exact commit or the version.
-        # uses: MadeByThePinsHub/setup-railway-cli-action@1c80b5f931809a2588df2f356f97455fa219d3d5
-        uses: MadeByThePinsHub/setup-railway-cli-action@v0.1.0
-        with:
-          # Git branch of custom Railway CLI source. When building from fhe official repo's source, use master branch.
-          repo-branch: https://github.com/railwayapp/cli
-
-      - name: Railway Deployment
-        run: railway up
-        env:
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
