@@ -1,5 +1,6 @@
 import nextcord
 from nextcord.ext import commands
+import jishaku
 import os
 from dotenv import load_dotenv
 
@@ -14,7 +15,7 @@ activity = nextcord.Activity(type=nextcord.ActivityType.watching, name="for inco
 bot = commands.Bot(command_prefix="m!", activity=activity, intents=intents, help_command=None)
 
 
-
+bot.load_extension('jishaku')
 bot.load_extension('modmail')
 bot.load_extension('admin')
 
