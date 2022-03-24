@@ -1,4 +1,4 @@
-name: Deploy to Railway
+name: Railway Deployment
 
 on:
   push:
@@ -12,14 +12,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Setup Python
-        uses: actions/setup-python@v3.0.0
-        with:
-          python-version: 3.10.2
-
-      - name: Install packages
-        run: pip install -r requirements.txt
-
       - name: Setup Railway CLI
         # You may pin to the exact commit or the version.
         # uses: MadeByThePinsHub/setup-railway-cli-action@1c80b5f931809a2588df2f356f97455fa219d3d5
@@ -28,8 +20,7 @@ jobs:
           # Git branch of custom Railway CLI source. When building from fhe official repo's source, use master branch.
           repo-branch: https://github.com/railwayapp/cli
 
-
-      - name: Deploy
+      - name: Railway Deployment
         run: railway up
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
