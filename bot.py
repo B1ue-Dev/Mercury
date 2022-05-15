@@ -6,9 +6,18 @@ bot_token = os.getenv('TOKEN')
 
 
 
-bot = interactions.Client(bot_token,
+bot = interactions.Client(
+	token=bot_token,
 	intents=interactions.Intents.ALL,
-	#disable_sync=True
+	presence=interactions.ClientPresence(
+		activities=[
+			interactions.PresenceActivity(
+				type=interactions.PresenceActivityType.WATCHING,
+				name="for incoming modmail"
+			)
+		],
+		status=interactions.StatusType.ONLINE,
+	)
 )
 
 
@@ -22,6 +31,17 @@ async def on_ready():
 	websocket = f"{bot.latency * 1:.0f}"
 	print('Bot is ready.')
 	print(f'Latency: {websocket}ms')
+	await bot.change_presence(
+		interactions.ClientPresence(
+			activities=[
+				interactions.PresenceActivity(
+					type=interactions.PresenceActivityType.WATCHING,
+					name="for incoming modmail"
+				)
+			],
+			status=interactions.StatusType.ONLINE,
+		)
+	)
 
 
 
