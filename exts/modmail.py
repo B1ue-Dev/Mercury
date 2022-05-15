@@ -23,11 +23,16 @@ class Modmail(interactions.Extension):
 			if int(message.author.id) == int(self.bot.me.id):
 				return
 			else:
-				_channel = interactions.Channel(**await self.bot._http.get_channel(MODMAIL_CHANNEL), _client=self.bot._http)
-				await _channel.send(f"{message.author.username}#{message.author.discriminator}: {message.content}")
-				if message.attachments:
-					for attachment in message.attachments:
-						await _channel.send(attachment.url)
+				user_id = str(message.author.id)
+				_blocked_list = json.loads(open("./db/blocked.json", "r").read())
+				if str(user_id) in _blocked_list:
+					return
+				else:
+					_channel = interactions.Channel(**await self.bot._http.get_channel(MODMAIL_CHANNEL), _client=self.bot._http)
+					await _channel.send(f"{message.author.username}#{message.author.discriminator}: {message.content}")
+					if message.attachments:
+						for attachment in message.attachments:
+							await _channel.send(attachment.url)
 
 		elif channel.type == interactions.ChannelType.GUILD_TEXT:
 			if int(message.channel_id) == int(MODMAIL_CHANNEL) and message.content.startswith("<"):
@@ -41,6 +46,8 @@ class Modmail(interactions.Extension):
 					if message.attachments:
 						for attachment in message.attachments:
 							await _member.send(attachment.url)
+			elif message.content.startswith("(") and message.content.endswith(")"):
+				return
 
 		else:
 			return
