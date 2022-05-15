@@ -20,7 +20,7 @@ bot.load('exts.modmail')
 @bot.event
 async def on_ready():
 	websocket = f"{bot.latency * 1:.0f}"
-	print('Ready!')
+	print('Bot is ready.')
 	print(f'Latency: {websocket}ms')
 
 
