@@ -1,2 +1,2 @@
 python-dotenv
-git+https://github.com/Jimmy-Blue/library.git@unstable
+discord-py-interactions==4.2.1
