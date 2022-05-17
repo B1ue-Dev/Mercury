@@ -1,5 +1,7 @@
 # Mercury [![wakatime](https://wakatime.com/badge/github/Jimmy-Blue/Mercury.svg)](https://wakatime.com/badge/github/Jimmy-Blue/Mercury)
 
+![image](https://user-images.githubusercontent.com/60958064/168848928-c9b81d41-e297-4ae9-9748-4f2237f86d2d.png)
+
 Mercury is a simple modmail Discord bot that you can use it in your own server.
 
 # Usage
