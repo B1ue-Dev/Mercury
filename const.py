@@ -14,4 +14,4 @@ global SCOPE
 
 TOKEN = os.getenv('TOKEN')
 MODMAIL_CHANNEL = os.getenv('MODMAIL_CHANNEL')
-SCOPE = os.getenv('SCOPE')
+SCOPE = int(os.getenv('SCOPE'))
