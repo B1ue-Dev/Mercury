@@ -8,13 +8,17 @@ Mercury is a simple modmail Discord bot that you can use it in your own server.
 
 - Clone this repository.
 - Install all packages dependency: ``pip install -r requirements.txt``.
-- Put your bot token, guild ID and channel ID you want to use as the modmail channel in ``.env`` file.
-- Run the bot: ``python bot.py``.
+- Put your bot token, guild ID and channel ID you want to use as the modmail channel in the ``.env.example`` file and remove the ``.example``.
+- Run the bot: ``python ./src/bot.py``.
 
 # Feature
 
-- A simple moderation mail system that staff/moderator can use to communicate with members.
+- A simple moderation mail system that members can use to get in touch with the moderation team.
 - Being able to block/unblock members from the bot.
+
+# Guide
+- For members: Send a message to the bot in DM. It will send the content to the modmail channel.
+- For moderators: Reply to the bot sent message to have your message sent back to the user through the bot.
 
 # Note
 
@@ -22,7 +26,6 @@ Mercury is a simple modmail Discord bot that you can use it in your own server.
 
 # Todo
 
-- [ ] Embed the message.
 - [ ] Move to SQL instead of json, preferably [SQLite](https://github.com/python/cpython/blob/main/Doc/library/sqlite3.rst).
 
 
