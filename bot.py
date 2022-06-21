@@ -22,7 +22,8 @@ client = interactions.Client(
     )
 )
 
-[client.load(f"exts.{ext}") for ext in [file.replace(".py", "") for file in os.listdir("exts") if not file.startswith("_")]]
+client.load('exts.mod')
+client.load('exts.modmail')
 
 @client.event
 async def on_ready():
