@@ -1,19 +1,19 @@
+"""
+Moderation commands.
+
+(C) 2022 - Jimmy-Blue
+"""
+
+import json
 import interactions
-from interactions import extension_command as command
-import os, json
-from dotenv import load_dotenv
-load_dotenv()
-SCOPE = int(os.getenv('SCOPE'))
-
-
-
+from const import SCOPE
 
 
 class Mod(interactions.Extension):
     def __init__(self, client: interactions.Client):
         self.client: interactions.Client = client
 
-    @command(
+    @interactions.extension_command(
         name="modmail",
         description="Moderation command for the bot",
         scope=SCOPE,
