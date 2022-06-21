@@ -1,51 +1,33 @@
-import interactions
+"""
+Root bot file.
+
+(C) 2022 - Jimmy-Blue
+"""
+
 import os
-from dotenv import load_dotenv
-load_dotenv()
-bot_token = os.getenv('TOKEN')
+import interactions
+from const import TOKEN
 
-
-
-bot = interactions.Client(
-	token=bot_token,
-	intents=interactions.Intents.ALL,
-	presence=interactions.ClientPresence(
-		activities=[
-			interactions.PresenceActivity(
-				type=interactions.PresenceActivityType.WATCHING,
-				name="for incoming modmail"
-			)
-		],
-		status=interactions.StatusType.ONLINE,
-	)
+client = interactions.Client(
+    token=TOKEN,
+    intents=interactions.Intents.DEFAULT | interactions.Intents.GUILD_MESSAGE_CONTENT,
+    presence=interactions.ClientPresence(
+        activities=[
+            interactions.PresenceActivity(
+                type=interactions.PresenceActivityType.WATCHING,
+                name="for incoming mail"
+            )
+        ],
+        status=interactions.StatusType.ONLINE,
+    )
 )
 
+[client.load(f"exts.{ext}") for ext in [file.replace(".py", "") for file in os.listdir("exts") if not file.startswith("_")]]
 
-bot.load('exts.mod')
-bot.load('exts.modmail')
-
-
-
-@bot.event
+@client.event
 async def on_ready():
-	websocket = f"{bot.latency * 1:.0f}"
-	print('Bot is ready.')
-	print(f'Latency: {websocket}ms')
-	await bot.change_presence(
-		interactions.ClientPresence(
-			activities=[
-				interactions.PresenceActivity(
-					type=interactions.PresenceActivityType.WATCHING,
-					name="for incoming modmail"
-				)
-			],
-			status=interactions.StatusType.ONLINE,
-		)
-	)
+    websocket = f"{client.latency * 1:.0f}"
+    print('Bot is ready.')
+    print(f'Latency: {websocket}ms')
 
-
-
-
-
-
-bot.start()
+client.start()
