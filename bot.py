@@ -5,61 +5,93 @@ Root bot file.
 """
 
 import os
-import interactions
-from const import TOKEN, SCOPE
-
-client = interactions.Client(
-    token=TOKEN,
-    intents=interactions.Intents.DEFAULT | interactions.Intents.GUILD_MESSAGE_CONTENT,
-    presence=interactions.ClientPresence(
-        activities=[
-            interactions.PresenceActivity(
-                type=interactions.PresenceActivityType.WATCHING,
-                name="for incoming mail"
-            )
-        ],
-        status=interactions.StatusType.ONLINE,
-    )
+from interactions import (
+    Client,
+    ClientPresence,
+    Intents,
+    PresenceActivity,
+    CommandContext,
+    PresenceActivityType,
+    StatusType,
+    Embed,
+    EmbedFooter,
+    Button,
+    ButtonStyle,
 )
+from const import TOKEN, SCOPE, EXTENSION
+from interactions.ext.wait_for import setup
 
-client.load('exts.mod')
-client.load('exts.modmail')
+class Bot(Client):
+    """Class represents the bot client."""
 
-@client.event
-async def on_ready():
-    websocket = f"{client.latency * 1:.0f}"
-    print('Bot is ready.')
-    print(f'Latency: {websocket}ms')
+    def __init__(self, *args, **kwargs) -> None:
+        super().__init__(
+            token=TOKEN,
+            intents=Intents.DEFAULT
+            | Intents.GUILD_MESSAGE_CONTENT,
+            presence=ClientPresence(
+                activities=[
+                    PresenceActivity(
+                        type=PresenceActivityType.WATCHING,
+                        name="for incoming mail."
+                    ),
+                ],
+                status=StatusType.ONLINE,
+            ),
+        )
+        self.event()(self.on_ready)
+
+    async def on_ready(self):
+        websocket = f"{self.latency * 1:.0f}"
+        print("Bot is ready.")
+        print(f"Latency: {websocket}ms")
+
+
+client = Bot()
+
+setup(client)
+
+client.load("exts.modmail")
+
+# [client.load(f"exts.{ext}") for ext in EXTENSION]
 
 @client.command(
     name="about",
     description="About Mercury",
     scope=SCOPE,
 )
-async def _about(ctx: interactions.CommandContext):
-    embed = interactions.Embed(
-        title="Mercury",
-        description="Mercury is a modmail Discord bot that members can use to get in touch with the moderation team.\n\nThis project is created and maintained by Blue#2095. You can have a look at the repository and his profile by clicking on the buttons below.",
-        color=0x08a46c,
-        footer=interactions.EmbedFooter(
-            text=f"Requested by {ctx.user.username}#{ctx.user.discriminator}",
-            icon_url=ctx.user.avatar_url
-        )
-    )
+async def _about(ctx: CommandContext):
 
     buttons = [
-        interactions.Button(
-            style=interactions.ButtonStyle.LINK,
+        Button(
+            style=ButtonStyle.LINK,
             label="Repository",
-            url="https://github.com/Jimmy-Blue/Mercury"
+            url="https://github.com/Jimmy-Blue/Mercury",
         ),
-        interactions.Button(
-            style=interactions.ButtonStyle.LINK,
+        Button(
+            style=ButtonStyle.LINK,
             label="Profile",
-            url="https://blue.is-a.dev"
-        )
+            url="https://blue.is-a.dev",
+        ),
     ]
 
+    embed = Embed(
+        title="Mercury",
+        description="".join(
+            [
+                "Mercury is a modmail Discord bot that members can use to get in touch with the moderation team.\n\n",
+                "This project is created and maintained by Blue#2095. You can have a look at the repository",
+                " and his profile by clicking on the buttons below.",
+            ]
+        ),
+        color=0x08A46C,
+        footer=EmbedFooter(
+            text=f"Requested by {ctx.user.username}#{ctx.user.discriminator}",
+            icon_url=ctx.user.avatar_url,
+        ),
+    )
+
     await ctx.send(embeds=embed, components=buttons)
+
 
 client.start()
