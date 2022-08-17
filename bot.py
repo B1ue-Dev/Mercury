@@ -18,7 +18,7 @@ from interactions import (
     Button,
     ButtonStyle,
 )
-from const import TOKEN, SCOPE, EXTENSION
+from const import TOKEN, EXTENSION
 from interactions.ext.wait_for import setup
 
 class Bot(Client):
@@ -51,14 +51,11 @@ client = Bot()
 
 setup(client)
 
-client.load("exts.modmail")
-
-# [client.load(f"exts.{ext}") for ext in EXTENSION]
+[client.load(f"exts.{ext}") for ext in EXTENSION]
 
 @client.command(
     name="about",
-    description="About Mercury",
-    scope=SCOPE,
+    description="About Mercury.",
 )
 async def _about(ctx: CommandContext):
 
